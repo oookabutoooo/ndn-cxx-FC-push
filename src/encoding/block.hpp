@@ -377,6 +377,8 @@ public: // misc
   /** @brief Implicit conversion to const_buffer
    */
   operator boost::asio::const_buffer() const;
+  uint32_t m_type; ///< TLV-TYPE
+  uint32_t m_size;
 
 private:
   /** @brief Estimate Block size as if sub elements are encoded into TLV-VALUE
@@ -407,13 +409,13 @@ protected:
   Buffer::const_iterator m_valueBegin; ///< @sa m_buffer
   Buffer::const_iterator m_valueEnd; ///< @sa m_buffer
 
-  uint32_t m_type; ///< TLV-TYPE
+  //uint32_t m_type; ///< TLV-TYPE
 
   /** @brief total size including Type-Length-Value
    *
    *  This field is valid only if empty() is false.
    */
-  uint32_t m_size;
+  //uint32_t m_size;
 
   /** @brief sub elements
    *

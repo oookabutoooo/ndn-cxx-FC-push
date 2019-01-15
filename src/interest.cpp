@@ -68,7 +68,10 @@ Interest::wireEncode(EncodingImpl<TAG>& encoder) const
   // (reverse encoding)
 
   // Content
-  totalLength += encoder.prependBlock(getContent());
+  //if(m_content.size() > tlv::sizeOfVarNumber(tlv::ContentType)) {
+    //std::cout << "Theres content" << std::endl;
+    totalLength += encoder.prependBlock(getContent());
+  //}
 
   //Function
   totalLength += getFunction().wireEncode(encoder);
@@ -96,7 +99,7 @@ Interest::wireEncode(EncodingImpl<TAG>& encoder) const
     totalLength += getSelectors().wireEncode(encoder);
   }
 
-  // Nameif(m_content
+  // Name
   totalLength += getName().wireEncode(encoder);
 
   totalLength += encoder.prependVarNumber(totalLength);
@@ -177,6 +180,7 @@ Interest::wireDecode(const Block& wire)
 
   // Content
   m_content = m_wire.get(tlv::Content);
+
 }
 
 std::string
